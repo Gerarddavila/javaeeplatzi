@@ -1,4 +1,4 @@
-package com.platzi.profesoresdeplatzi.service;
+package com.platzi.profesoresplatzi.service;
 
 import java.util.List;
 
@@ -7,17 +7,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.platzi.profesoresdeplatzi.dao.*;
-import com.platzi.profesoresdeplatzi.model.SocialMedia;
-import com.platzi.profesoresdeplatzi.model.TeacherSocialMedia;
+import com.platzi.profesoresplatzi.dao.SocialMediaDao;
+import com.platzi.profesoresplatzi.model.SocialMedia;
+import com.platzi.profesoresplatzi.model.TeacherSocialMedia;
 
 @Service("socialMediaService")
 @Transactional
-public class SocialMediaServiceImpl implements SocialMediaService {
-
+public class SocialMediaServiceImpl implements SocialMediaService{
 	
 	@Autowired
-	private SocialMediaDao _socialMediaDao ;
+	private SocialMediaDao _socialMediaDao;
 	
 	@Override
 	public void saveSocialMedia(SocialMedia socialMedia) {
@@ -26,9 +25,9 @@ public class SocialMediaServiceImpl implements SocialMediaService {
 	}
 
 	@Override
-	public void deleteSocialMediabyId(Long idSocialMedia) {
+	public void deleteSocialMediaById(Long id) {
 		// TODO Auto-generated method stub
-		_socialMediaDao.deleteSocialMediabyId(idSocialMedia);
+		_socialMediaDao.deleteSocialMediaById(id);
 	}
 
 	@Override
@@ -38,9 +37,9 @@ public class SocialMediaServiceImpl implements SocialMediaService {
 	}
 
 	@Override
-	public List<SocialMedia> findAllSocialMedia() {
+	public List<SocialMedia> findAllSocialMedias() {
 		// TODO Auto-generated method stub
-		return _socialMediaDao.findAllSocialMedia();
+		return _socialMediaDao.findAllSocialMedias();
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class SocialMediaServiceImpl implements SocialMediaService {
 	}
 
 	@Override
-	public SocialMedia findByName(Long name) {
+	public SocialMedia findByName(String name) {
 		// TODO Auto-generated method stub
 		return _socialMediaDao.findByName(name);
 	}

@@ -1,9 +1,10 @@
-package com.platzi.profesoresdeplatzi.configuration;
+package com.platzi.profesoresplatzi.configuration;
 
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,29 +21,28 @@ public class DataBaseConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource());
-		sessionFactoryBean.setPackagesToScan("com.platzi.profesoresdeplatzi.model");
+		sessionFactoryBean.setPackagesToScan("com.platzi.profesoresplatzi.model");
 		sessionFactoryBean.setHibernateProperties(hibernateProperties());
 		return sessionFactoryBean;
-		
 	}
-	
+
 	@Bean
-	 public DataSource dataSource() {
-		 DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		 dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		 dataSource.setUrl("jdbc:mysql://localhost:3306/platziprofesores");
-		 dataSource.setUsername("platziprojects");
-		 dataSource.setPassword("platz1");
-		 
-		 return dataSource;
-	 }
-	
-	
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/platziprofesores");
+		dataSource.setUsername("platziprojects");
+		// dataSource.setPassword("platziprofesores");
+		dataSource.setPassword("platz1");
+
+		return dataSource;
+	}
+
 	public Properties hibernateProperties() {
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		properties.put("show_sql", "true");
-		
+
 		return properties;
 	}
 
@@ -53,4 +53,5 @@ public class DataBaseConfiguration {
 		hibernateTransactionManager.setSessionFactory(sessionFactory().getObject());
 		return hibernateTransactionManager;
 	}
+
 }

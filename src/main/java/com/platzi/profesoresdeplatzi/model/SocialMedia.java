@@ -1,4 +1,4 @@
-package com.platzi.profesoresdeplatzi.model;
+package com.platzi.profesoresplatzi.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -14,35 +14,32 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="social_media")
-public class SocialMedia implements Serializable{
-
+public class SocialMedia implements Serializable {
+	
 	@Id
 	@Column(name="id_social_media")
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idSocialMedia;
 	
 	@Column(name="name")
 	private String name;
 	
-	@Column(name = "icon")
+	@Column(name="icon")
 	private String icon;
 	
 	@OneToMany
 	@JoinColumn(name="id_social_media")
 	private Set<TeacherSocialMedia> teacherSocialMedias;
 	
-
-	public SocialMedia() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public SocialMedia(String name, String icon) {
 		super();
 		this.name = name;
 		this.icon = icon;
 	}
-
+	public SocialMedia() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Long getIdSocialMedia() {
 		return idSocialMedia;
 	}
@@ -61,15 +58,13 @@ public class SocialMedia implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
 	public Set<TeacherSocialMedia> getTeacherSocialMedias() {
 		return teacherSocialMedias;
 	}
-
 	public void setTeacherSocialMedias(Set<TeacherSocialMedia> teacherSocialMedias) {
 		this.teacherSocialMedias = teacherSocialMedias;
 	}
 	
 	
-	
+
 }

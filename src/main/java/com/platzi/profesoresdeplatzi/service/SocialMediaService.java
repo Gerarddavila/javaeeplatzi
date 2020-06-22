@@ -1,20 +1,22 @@
-package com.platzi.profesoresdeplatzi.service;
+package com.platzi.profesoresplatzi.service;
 
 import java.util.List;
 
-import com.platzi.profesoresdeplatzi.model.SocialMedia;
-import com.platzi.profesoresdeplatzi.model.TeacherSocialMedia;
+import com.platzi.profesoresplatzi.model.SocialMedia;
+import com.platzi.profesoresplatzi.model.TeacherSocialMedia;
 
 public interface SocialMediaService {
-
 	void saveSocialMedia(SocialMedia socialMedia);
-	void deleteSocialMediabyId(Long idSocialMedia);
+	
+	void deleteSocialMediaById(Long id);
+	
 	void updateSocialMedia(SocialMedia socialMedia);
-	List<SocialMedia>findAllSocialMedia();
+	
+	List<SocialMedia> findAllSocialMedias();
 	
 	SocialMedia findById(Long idSocialMedia);
 	
-	SocialMedia findByName(Long name);
+	SocialMedia findByName(String name);
 	
 	TeacherSocialMedia findSocialMediaByIdAndName(Long idSocialMedia, String nickname);
 }

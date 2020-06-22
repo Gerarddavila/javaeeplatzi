@@ -1,10 +1,16 @@
-package com.platzi.profesoresdeplatzi.dao;
+package com.platzi.profesoresplatzi.dao;
 
 import java.util.List;
 
-import com.platzi.profesoresdeplatzi.model.Course;
+import javax.transaction.Transactional;
 
-public class CourseDaoImpl extends AbstractSession implements CourseDao{
+import org.springframework.stereotype.Repository;
+
+import com.platzi.profesoresplatzi.model.Course;
+
+@Repository
+@Transactional
+public class CourseDaoImpl extends AbstractSession implements CourseDao {
 
 	@Override
 	public void saveCourse(Course course) {
@@ -16,8 +22,8 @@ public class CourseDaoImpl extends AbstractSession implements CourseDao{
 	public void deleteCourseById(Long idCourse) {
 		// TODO Auto-generated method stub
 		Course course = findById(idCourse);
-		if (course !=null){
-			getSession().delete(course);
+		if (course  != null) {
+			getSession().delete(course );
 		}
 	}
 
@@ -30,10 +36,7 @@ public class CourseDaoImpl extends AbstractSession implements CourseDao{
 	@Override
 	public List<Course> findAllCourses() {
 		// TODO Auto-generated method stub
-		
 		return getSession().createQuery("from Course").list();
-		
-		// return (Course) getSession().get(Course.class,idCourse);
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class CourseDaoImpl extends AbstractSession implements CourseDao{
 	}
 
 	@Override
-	public Course findByNombre(String name) {
+	public Course findByName(String name) {
 		// TODO Auto-generated method stub
 		return (Course) getSession().createQuery(
 				"from Course where name = :name")
@@ -53,10 +56,9 @@ public class CourseDaoImpl extends AbstractSession implements CourseDao{
 	@Override
 	public List<Course> findByIdTeacher(Long idTeacher) {
 		// TODO Auto-generated method stub
-		return (List<Course>)getSession().createQuery(
+		return (List<Course>) getSession().createQuery(
 				"from Course c join c.teacher t where t.idTeacher = :idTeacher")
 				.setParameter("idTeacher", idTeacher).list();
-				
 	}
 
 }
